@@ -49,13 +49,36 @@ export function RegisterLoginData() {
     resolver: yupResolver(schema)
   });
 
-  async function handleRegister(formData: FormData) {
+  async function handleRegister(formData: Partial<FormData>) {
     const newLoginData = {
       id: String(uuid.v4()),
-      ...formData
+      service_name: formData.service_name?.trim(),
+      email: formData.email?.trim(),
+      password: formData.password?.trim()
     }
 
+    console.log(newLoginData)
+
     const dataKey = '@savepass:logins';
+
+    try {
+      const otherLoginsString = await AsyncStorage.getItem(dataKey)
+      const otherLogins = otherLoginsString ? JSON.parse(otherLoginsString): []
+
+      const dataFormatted = [
+          ...otherLogins,
+          newLoginData
+      ]
+
+      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted))
+
+      navigate("Home")
+
+    } catch (error: any) {
+      console.log(error);
+      Alert.alert("Não foi possível salvar.")
+    }
+
 
     // Save data on AsyncStorage and navigate to 'Home' screen
   }
@@ -73,10 +96,7 @@ export function RegisterLoginData() {
             testID="service-name-input"
             title="Nome do serviço"
             name="service_name"
-            error={
-              // Replace here with real content
-              'Has error ? show error message'
-            }
+            error={errors.service_name && errors.service_name.message}
             control={control}
             autoCapitalize="sentences"
             autoCorrect
@@ -85,10 +105,7 @@ export function RegisterLoginData() {
             testID="email-input"
             title="E-mail ou usuário"
             name="email"
-            error={
-              // Replace here with real content
-              'Has error ? show error message'
-            }
+            error={errors.email && errors.email.message}
             control={control}
             autoCorrect={false}
             autoCapitalize="none"
@@ -98,10 +115,7 @@ export function RegisterLoginData() {
             testID="password-input"
             title="Senha"
             name="password"
-            error={
-              // Replace here with real content
-              'Has error ? show error message'
-            }
+            error={errors.password && errors.password.message}
             control={control}
             secureTextEntry
           />
