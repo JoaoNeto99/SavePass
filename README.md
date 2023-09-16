@@ -14,6 +14,6 @@ A Save Password oferece as seguintes funcionalidades:
 Se você deseja contribuir para o desenvolvimento da Save Password, sinta-se à vontade para abrir problemas (issues) ou enviar solicitações de pull (pull requests). Sua ajuda e contribuições são sempre bem-vindas!
 
 ## Suporte
-Para obter suporte ou esclarecer dúvidas relacionadas à aplicação SavePass, entre em contato com a equipe de desenvolvimento pelo e-mail: joaoneto7499@gmail.com.
+Para obter suporte ou esclarecer dúvidas relacionadas à aplicação Save Password, entre em contato com a equipe de desenvolvimento pelo e-mail: joaoneto7499@gmail.com.
 
 Agradecemos por utilizar a Save Password e esperamos que ela seja útil para gerenciar suas senhas com segurança. Mantenha suas credenciais protegidas e aproveite a aplicação!
